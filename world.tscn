@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu82khghkhelx"]
+
+[ext_resource type="Texture2D" uid="uid://bg5j80r0fcnnn" path="res://UI/HeartUIFull.png" id="1_hk4ls"]
+[ext_resource type="PackedScene" uid="uid://bqdivu2kwx1hs" path="res://Player/player.tscn" id="2_5m84k"]
+[ext_resource type="PackedScene" uid="uid://b1vymdxkqw1cm" path="res://World/bush.tscn" id="3_p8heq"]
+[ext_resource type="Texture2D" uid="uid://bjfvg6flo1de1" path="res://World/GrassBackground.png" id="4_g5s8i"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="testheart" type="Sprite2D" parent="."]
+position = Vector2(59, 47)
+scale = Vector2(5.58333, 7.06818)
+texture = ExtResource("1_hk4ls")
+
+[node name="Player" parent="." instance=ExtResource("2_5m84k")]
+position = Vector2(159, 92)
+
+[node name="Bush" parent="." instance=ExtResource("3_p8heq")]
+position = Vector2(108, 100)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(160, 90)
+texture = ExtResource("4_g5s8i")
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 180)
