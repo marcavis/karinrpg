@@ -1,2 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
+KarinRPG.console.exe
+KarinRPG.exe
+KarinRPG.pck
+KarinRPG.zip
