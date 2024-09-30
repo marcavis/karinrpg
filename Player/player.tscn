@@ -1,13 +1,15 @@
-[gd_scene load_steps=64 format=3 uid="uid://bqdivu2kwx1hs"]
+[gd_scene load_steps=68 format=3 uid="uid://bqdivu2kwx1hs"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_bsbma"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_bsbma"]
 [ext_resource type="Shader" path="res://whitecolor.gdshader" id="2_x5re7"]
 [ext_resource type="PackedScene" uid="uid://crwyh0oolue7g" path="res://Collision/hitbox.tscn" id="3_eo8rt"]
-[ext_resource type="AudioStream" uid="uid://1geal0u8hjq4" path="res://Music and Sounds/Swipe.wav" id="3_l6bf4"]
+[ext_resource type="AudioStream" uid="uid://1geal0u8hjq4" path="res://Sounds/Swipe.wav" id="3_l6bf4"]
 [ext_resource type="Texture2D" uid="uid://ciab33cn8hki6" path="res://Player/karin-walksheet1-artfonpro.png" id="3_sf4ba"]
 [ext_resource type="Script" path="res://Player/sword_hitbox.gd" id="4_lnnfh"]
 [ext_resource type="PackedScene" uid="uid://djymhmhx33hxy" path="res://Collision/hurtbox.tscn" id="5_paeja"]
 [ext_resource type="Texture2D" uid="uid://dhtwyyl4d4r18" path="res://Shadows/MediumShadow.png" id="6_3tukx"]
+[ext_resource type="Script" path="res://Player/player_interactions_host.gd" id="9_rpo0x"]
+[ext_resource type="Script" path="res://Player/push_area.gd" id="10_bocwf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qq43"]
 shader = ExtResource("2_x5re7")
@@ -312,6 +314,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_ki1yi"]
 resource_name = "IdleLeft"
@@ -328,6 +366,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ut1ht"]
@@ -346,6 +420,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [8]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_lhb6n"]
 resource_name = "IdleUp"
@@ -363,6 +473,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [12]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
 
 [sub_resource type="Animation" id="Animation_ro51t"]
 resource_name = "run_right"
@@ -377,7 +523,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [39]
+"values": [15]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -402,6 +548,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_6ju8r"]
@@ -544,6 +726,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 2, 1, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_gp8v0"]
 resource_name = "RunLeft"
@@ -560,6 +778,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [4, 6, 5, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_52t03"]
@@ -578,6 +832,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [8, 10, 9, 11]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_21db0"]
 resource_name = "RunUp"
@@ -594,6 +884,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [12, 14, 13, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interactions/AreaPivot/InteractArea/InteractCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:direction")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interactions/AreaPivot/PushArea/PushCollisionShape:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_np01d"]
@@ -812,16 +1138,25 @@ _data = {
 "stop": SubResource("Animation_jxw3f")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gawoj"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwadd"]
+size = Vector2(6, 12)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 65
+motion_mode = 1
 script = ExtResource("1_bsbma")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0qq43")
-position = Vector2(0, -9)
+position = Vector2(0, -13)
 texture = ExtResource("3_sf4ba")
 hframes = 4
 vframes = 4
+frame = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -837,7 +1172,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vs7ph")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/blend_position = Vector2(0, 1)
-parameters/Idle/blend_position = Vector2(0, 1)
+parameters/Idle/blend_position = Vector2(0.0653358, -0.537885)
 parameters/Roll/blend_position = Vector2(0, 1)
 parameters/Run/blend_position = Vector2(0, 1)
 
@@ -847,7 +1182,6 @@ position = Vector2(0, -4)
 [node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource("3_eo8rt")]
 unique_name_in_owner = true
 position = Vector2(15, 0)
-rotation = 0.0174533
 collision_layer = 8
 script = ExtResource("4_lnnfh")
 
@@ -874,6 +1208,29 @@ texture = ExtResource("6_3tukx")
 libraries = {
 "": SubResource("AnimationLibrary_70egw")
 }
+
+[node name="Interactions" type="Node2D" parent="."]
+script = ExtResource("9_rpo0x")
+
+[node name="AreaPivot" type="Marker2D" parent="Interactions"]
+position = Vector2(0, 2)
+
+[node name="InteractArea" type="Area2D" parent="Interactions/AreaPivot"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="InteractCollisionShape2D" type="CollisionShape2D" parent="Interactions/AreaPivot/InteractArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gawoj")
+debug_color = Color(0.748437, 0.46068, 0.00717264, 0.42)
+
+[node name="PushArea" type="Area2D" parent="Interactions/AreaPivot"]
+script = ExtResource("10_bocwf")
+
+[node name="PushCollisionShape" type="CollisionShape2D" parent="Interactions/AreaPivot/PushArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_iwadd")
+debug_color = Color(0.0888826, 0.587169, 0.75343, 0.42)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]

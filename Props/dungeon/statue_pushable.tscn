@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://eynoyt6erqp0"]
+
+[ext_resource type="Script" path="res://Props/dungeon/scripts/statue_pushable.gd" id="1_46rr8"]
+[ext_resource type="Texture2D" uid="uid://lwrwlruxkraq" path="res://Tilemaps/sprites/mg_dungeon_props.png" id="2_cgahw"]
+[ext_resource type="AudioStream" uid="uid://bw2inhvusmb3w" path="res://Sounds/mg_push_stone.wav" id="3_asvk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enmug"]
+size = Vector2(30, 12.5)
+
+[node name="StatuePushable" type="RigidBody2D"]
+collision_mask = 81
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_46rr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.75)
+shape = SubResource("RectangleShape2D_enmug")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -19)
+texture = ExtResource("2_cgahw")
+region_enabled = true
+region_rect = Rect2(384, 0, 32, 48)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_asvk0")

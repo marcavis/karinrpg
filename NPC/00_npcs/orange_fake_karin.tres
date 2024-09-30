@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NPCResource" load_steps=3 format=3 uid="uid://d37n8kxapomhn"]
+
+[ext_resource type="Script" path="res://NPC/scripts/npc_resource.gd" id="1_mi8ed"]
+[ext_resource type="Texture2D" uid="uid://ciab33cn8hki6" path="res://Player/karin-walksheet1-artfonpro.png" id="2_r1che"]
+
+[resource]
+script = ExtResource("1_mi8ed")
+npc_name = "Orange Fake Karin"
+sprite = ExtResource("2_r1che")
+dialog_audio_pitch = ""

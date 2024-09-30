@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cicu8rtgg0hwp"]
+
+[ext_resource type="Script" path="res://Props/dungeon/scripts/pressure_plate.gd" id="1_mebi0"]
+[ext_resource type="AudioStream" uid="uid://b1f7qeifj6eyu" path="res://Sounds/mg_lever-01.wav" id="2_56o3u"]
+[ext_resource type="Texture2D" uid="uid://lwrwlruxkraq" path="res://Tilemaps/sprites/mg_dungeon_props.png" id="2_obgyd"]
+[ext_resource type="AudioStream" uid="uid://cghnk5r22j0q2" path="res://Sounds/mg_lever-02.wav" id="3_q8v13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohnri"]
+size = Vector2(8, 8)
+
+[node name="PressurePlate" type="Node2D"]
+script = ExtResource("1_mebi0")
+audio_activate = ExtResource("2_56o3u")
+audio_deactivate = ExtResource("3_q8v13")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_obgyd")
+region_enabled = true
+region_rect = Rect2(416, 64, 32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 83
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ohnri")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
