@@ -64,12 +64,14 @@ position = Vector2(112, 80)
 
 [node name="NPC" parent="." instance=ExtResource("10_q18l4")]
 position = Vector2(110, 58)
+push_speed = null
 
 [node name="BarredDoor" parent="." instance=ExtResource("9_6le1b")]
 position = Vector2(128, 24)
 
 [node name="StatuePushable" parent="." instance=ExtResource("10_mqt54")]
 position = Vector2(159, 56)
+push_speed = 30.0
 
 [connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
 [connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]

@@ -84,6 +84,7 @@ interact={
 2d_physics/layer_6="SoftCollisions"
 2d_physics/layer_7="NPC"
 2d_physics/layer_8="PlayerInteract"
+2d_physics/layer_9="Props"
 
 [rendering]
 

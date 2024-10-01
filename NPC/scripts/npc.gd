@@ -6,16 +6,20 @@ class_name NPC extends CharacterBody2D
 @export var MAX_SPEED = 45
 @export var FRICTION = 900
 @export var wander_range: int = 40
-
+@export var push_speed: float = 30.0
 @export var npc_resource: NPCResource:
 	set = _set_npc_resource
-
+var push_direction: Vector2 = Vector2.ZERO:
+	set = _set_push
+var pusher: Player = null
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var timer: Timer = $Timer
+
+
 
 var start_position: Vector2
 
@@ -67,7 +71,7 @@ func move_state(delta):
 func idle_state(delta):
 	animationState.travel("Idle")
 	animationTree.set("parameters/Idle/blend_position", movement_vector)
-	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	velocity = velocity.move_toward(push_direction * push_speed + Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
 
 func pick_new_direction():
@@ -93,3 +97,6 @@ func _on_push_avoidance_zone_bumped_with_something() -> void:
 func _set_npc_resource(_npc: NPCResource) -> void:
 	npc_resource = _npc
 	setup_npc()
+	
+func _set_push(value: Vector2) -> void:
+	push_direction = value

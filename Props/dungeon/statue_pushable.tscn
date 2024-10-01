@@ -8,6 +8,7 @@
 size = Vector2(30, 12.5)
 
 [node name="StatuePushable" type="CharacterBody2D"]
+collision_layer = 257
 collision_mask = 81
 script = ExtResource("1_46rr8")
 

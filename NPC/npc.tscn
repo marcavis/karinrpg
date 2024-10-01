@@ -481,6 +481,7 @@ height = 32.0
 collision_layer = 64
 motion_mode = 1
 script = ExtResource("1_nwor6")
+push_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0qq43")

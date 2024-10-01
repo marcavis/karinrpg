@@ -812,6 +812,7 @@ shape = SubResource("RectangleShape2D_gawoj")
 debug_color = Color(0.748437, 0.46068, 0.00717264, 0.42)
 
 [node name="PushArea" type="Area2D" parent="Interactions/AreaPivot"]
+collision_mask = 320
 script = ExtResource("10_bocwf")
 
 [node name="PushCollisionShape" type="CollisionShape2D" parent="Interactions/AreaPivot/PushArea"]
