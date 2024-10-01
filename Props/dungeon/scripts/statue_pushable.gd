@@ -1,4 +1,4 @@
-class_name StatuePushable extends RigidBody2D
+class_name StatuePushable extends CharacterBody2D
 
 @export var push_speed: float = 30.0
 var push_direction: Vector2 = Vector2.ZERO:
@@ -14,13 +14,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	linear_velocity = push_direction * push_speed 
+	velocity = push_direction * push_speed
+	print(velocity)
+	move_and_slide()
 	pass
 
 func _set_push(value: Vector2) -> void:
 	push_direction = value
 	if push_direction == Vector2.ZERO:
-		audio.stop
+		audio.stop()
 	else:
-		audio.play
+		audio.play()
 	

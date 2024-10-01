@@ -21,6 +21,7 @@ var stats = PlayerStats
 @onready var swordHitbox = %SwordHitbox
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var push_area: Area2D = $Interactions/AreaPivot/PushArea
 
 
 #const SPEED = 300.0

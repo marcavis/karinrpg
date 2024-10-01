@@ -71,7 +71,7 @@ func idle_state(delta):
 	move_and_slide()
 
 func pick_new_direction():
-	var directions: Array[Vector2] = [Vector2.RIGHT,Vector2.RIGHT,Vector2.RIGHT,Vector2.RIGHT, Vector2.LEFT, Vector2.DOWN, Vector2.UP]
+	var directions: Array[Vector2] = [Vector2.RIGHT, Vector2.LEFT, Vector2.DOWN, Vector2.UP]
 	movement_vector = choose(directions)
 	var deltax = global_position.x - start_position.x
 	var deltay = global_position.y - start_position.y
