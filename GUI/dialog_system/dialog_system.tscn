@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=3 uid="uid://cluwhnblunbjb"]
+
+[ext_resource type="Script" path="res://GUI/dialog_system/scripts/dialog_system.gd" id="1_h67cc"]
+[ext_resource type="Texture2D" uid="uid://dsrq3ky5q4y5j" path="res://GUI/dialog_system/sprites/text-bubble.png" id="1_l8xhs"]
+[ext_resource type="FontFile" uid="uid://dvfg0pau0tfgw" path="res://GUI/dialog_system/fonts/Abaddon Light.ttf" id="2_lpg6j"]
+[ext_resource type="FontFile" uid="uid://bqvcckrgruvj0" path="res://GUI/dialog_system/fonts/Abaddon Bold.ttf" id="3_kbho4"]
+[ext_resource type="AudioStream" uid="uid://c24qdgjtt7v72" path="res://GUI/dialog_system/audio/voice_blip.wav" id="5_rskuw"]
+[ext_resource type="Theme" uid="uid://bktla2qjws2cy" path="res://GUI/dialog_system/dialog_choice_theme.tres" id="6_jmbqa"]
+
+[sub_resource type="Gradient" id="Gradient_yc33i"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jgjhx"]
+gradient = SubResource("Gradient_yc33i")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_reo8q"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+texture = ExtResource("1_l8xhs")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vlsk"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 1.0
+
+[node name="DialogSystem" type="CanvasLayer"]
+process_mode = 3
+layer = 3
+script = ExtResource("1_h67cc")
+
+[node name="DialogUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="DialogUI"]
+modulate = Color(0, 0, 0, 0.74902)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_jgjhx")
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -68.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1, 0.990485)
+theme_override_styles/panel = SubResource("StyleBoxTexture_reo8q")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogUI/PanelContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.435294, 0.372549, 0.309804, 1)
+theme_override_fonts/normal_font = ExtResource("2_lpg6j")
+theme_override_fonts/bold_font = ExtResource("3_kbho4")
+bbcode_enabled = true
+text = "Hello [wave]fool[/wave]"
+
+[node name="NameLabel" type="Label" parent="DialogUI"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.686275, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("3_kbho4")
+
+[node name="PortraitSprite" type="Sprite2D" parent="DialogUI"]
+position = Vector2(40, 128)
+
+[node name="Timer" type="Timer" parent="DialogUI"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DialogUI"]
+stream = ExtResource("5_rskuw")
+max_polyphony = 6
+bus = &"SFX"
+
+[node name="DialogProgressIndicator" type="PanelContainer" parent="DialogUI"]
+visible = false
+layout_mode = 0
+offset_left = 272.0
+offset_top = 152.0
+offset_right = 312.0
+offset_bottom = 172.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vlsk")
+
+[node name="LabelNext" type="Label" parent="DialogUI/DialogProgressIndicator"]
+layout_mode = 2
+text = "↓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.333
+anchor_right = 0.5
+anchor_bottom = 0.333
+offset_left = -48.0
+offset_top = -27.94
+offset_right = 52.0
+offset_bottom = 28.06
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_jmbqa")
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="DialogUI/VBoxContainer"]
+layout_mode = 2
+text = "Choice 1"
+
+[node name="Button2" type="Button" parent="DialogUI/VBoxContainer"]
+layout_mode = 2
+text = "Choice 1"
+
+[node name="Button3" type="Button" parent="DialogUI/VBoxContainer"]
+layout_mode = 2
+text = "Choice 1"

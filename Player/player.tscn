@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bqdivu2kwx1hs"]
+[gd_scene load_steps=60 format=3 uid="uid://bqdivu2kwx1hs"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_bsbma"]
 [ext_resource type="Shader" path="res://whitecolor.gdshader" id="2_x5re7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Player/sword_hitbox.gd" id="4_lnnfh"]
 [ext_resource type="PackedScene" uid="uid://djymhmhx33hxy" path="res://Collision/hurtbox.tscn" id="5_paeja"]
 [ext_resource type="Texture2D" uid="uid://dhtwyyl4d4r18" path="res://Shadows/MediumShadow.png" id="6_3tukx"]
+[ext_resource type="Script" path="res://Player/interact_area.gd" id="9_isq66"]
 [ext_resource type="Script" path="res://Player/player_interactions_host.gd" id="9_rpo0x"]
 [ext_resource type="Script" path="res://Player/push_area.gd" id="10_bocwf"]
 
@@ -804,10 +805,11 @@ script = ExtResource("9_rpo0x")
 
 [node name="InteractArea" type="Area2D" parent="Interactions/AreaPivot"]
 collision_layer = 128
-collision_mask = 0
+collision_mask = 320
+script = ExtResource("9_isq66")
 
 [node name="InteractCollisionShape2D" type="CollisionShape2D" parent="Interactions/AreaPivot/InteractArea"]
-position = Vector2(2, 0)
+position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_gawoj")
 debug_color = Color(0.748437, 0.46068, 0.00717264, 0.42)
 

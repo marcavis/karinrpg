@@ -84,7 +84,6 @@ offset_bottom = 16.0
 
 [node name="FakeKarin" parent="." instance=ExtResource("10_hevmk")]
 position = Vector2(49, 115)
-push_speed = null
 npc_resource = ExtResource("11_2uko6")
 
 [node name="MgDungeon" parent="." instance=ExtResource("12_v80cq")]

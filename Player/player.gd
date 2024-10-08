@@ -8,7 +8,8 @@ class_name Player extends CharacterBody2D
 enum {
 	MOVE,
 	ROLL,
-	ATTACK
+	ATTACK,
+	INTERACT
 }
 
 var state = MOVE
@@ -22,6 +23,7 @@ var stats = PlayerStats
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var push_area: Area2D = $Interactions/AreaPivot/PushArea
+@onready var interact_area: Area2D = $Interactions/AreaPivot/InteractArea
 
 
 #const SPEED = 300.0
@@ -44,6 +46,8 @@ func _physics_process(delta):
 			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
+		INTERACT:
+			interact_state(delta)
 	
 	
 	
@@ -72,8 +76,16 @@ func move_state(delta):
 	move_and_slide()
 	#if Input.is_action_just_pressed("attack"):
 		#state = ATTACK
-	#if Input.is_action_just_pressed("roll"):
-		#state = ROLL
+	if Input.is_action_just_pressed("interact"):
+		if interact_area.targets.size() > 0:
+			if !DialogSystem.on_cooldown:
+				state = INTERACT
+	
+func interact_state(delta):
+	if interact_area.targets.size() > 0:
+		interact_area.targets[0].start_interaction(self)
+	state = MOVE
+	
 	
 func roll_state(delta):
 	#velocity = roll_vector * ROLL_SPEED

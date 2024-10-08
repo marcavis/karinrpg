@@ -18,9 +18,10 @@ var pusher: Player = null
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
 @onready var timer: Timer = $Timer
+@onready var bump_avoidance_zone: Area2D = $PushAvoiderPivot/BumpAvoidanceZone
 
 
-
+var dialog_interaction: DialogInteraction = null
 var start_position: Vector2
 
 enum {
@@ -43,6 +44,9 @@ func choose(options: Array):
 func _ready():
 	randomize()
 	setup_npc()
+	if Engine.is_editor_hint():
+		return
+	gather_dialog_items()
 	start_position = global_position
 	#stats.connect("no_health", Callable(self, "queue_free"))
 	#stats.no_health.connect(queue_free)
@@ -76,23 +80,27 @@ func idle_state(delta):
 
 func pick_new_direction():
 	var directions: Array[Vector2] = [Vector2.RIGHT, Vector2.LEFT, Vector2.DOWN, Vector2.UP]
+	#if we're facing the player and it's nearby, let's
+	#pick a different direction than current
+	if bump_avoidance_zone.player_is_nearby():
+		directions.erase(movement_vector)
 	movement_vector = choose(directions)
 	var deltax = global_position.x - start_position.x
 	var deltay = global_position.y - start_position.y
 	#if we are too far in the X or Y axis, and the movement vector we picked
 	#would push us further in the same direction, reverse the movement vector
-	if deltax * movement_vector.x > wander_range || deltay * movement_vector.y > wander_range:
+	if deltax * movement_vector.x > wander_range || \
+		deltay * movement_vector.y > wander_range:
 		movement_vector = -movement_vector
 	state = MOVE
 
 func _on_timer_timeout() -> void:
 	timer.wait_time = choose([0.5, 1.0, 1.5])
 	state = choose([IDLE, NEW_DIRECTION])
-	
-func _on_push_avoidance_zone_bumped_with_something() -> void:
-	#TODO: DO I really need this?
-	state = IDLE
-	pass # Replace with function body.
+
+#prevent from i
+func _reset_timer_for_interaction() -> void:
+	timer.wait_time = 1.5
 
 func _set_npc_resource(_npc: NPCResource) -> void:
 	npc_resource = _npc
@@ -100,3 +108,27 @@ func _set_npc_resource(_npc: NPCResource) -> void:
 	
 func _set_push(value: Vector2) -> void:
 	push_direction = value
+
+
+func _on_bump_avoidance_zone_bumped_with_something() -> void:
+	state = IDLE
+
+func start_interaction(_player: Player) -> void:
+	state = IDLE
+	_reset_timer_for_interaction()
+	movement_vector = -_player.direction
+	await get_tree().create_timer(0.1).timeout
+	DialogSystem.show_dialog_ui(dialog_interaction.dialog_items)
+
+func gather_dialog_items() -> void:
+	for c in get_children():
+		if c is DialogInteraction:
+			dialog_interaction = c
+			c.player_interacted.connect(_on_player_interacted)
+			c.finished.connect(_on_interaction_finished)
+			
+func _on_player_interacted() -> void:
+	state = IDLE
+	
+func _on_interaction_finished() -> void:
+	pass

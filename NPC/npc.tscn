@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://NPC/scripts/npc.gd" id="1_nwor6"]
 [ext_resource type="Shader" path="res://whitecolor.gdshader" id="2_a3m2j"]
 [ext_resource type="Texture2D" uid="uid://cj7547toya3iw" path="res://Player/fakekarin-walksheet1-artfonpro.png" id="3_kci3b"]
-[ext_resource type="PackedScene" uid="uid://dui83u1q06c6b" path="res://NPC/push_avoidance_zone.tscn" id="6_vj2oq"]
+[ext_resource type="PackedScene" uid="uid://dui83u1q06c6b" path="res://NPC/bump_avoidance_zone.tscn" id="6_vj2oq"]
 [ext_resource type="Texture2D" uid="uid://dhtwyyl4d4r18" path="res://Shadows/MediumShadow.png" id="8_cmg58"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qq43"]
@@ -474,14 +474,13 @@ _data = {
 "stop": SubResource("Animation_jxw3f")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwr72"]
-height = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttejn"]
+size = Vector2(10, 6)
 
 [node name="NPC" type="CharacterBody2D"]
 collision_layer = 64
 motion_mode = 1
 script = ExtResource("1_nwor6")
-push_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0qq43")
@@ -523,15 +522,15 @@ libraries = {
 autostart = true
 
 [node name="PushAvoiderPivot" type="Marker2D" parent="."]
-position = Vector2(0, -4)
 
-[node name="PushAvoidanceZone" parent="PushAvoiderPivot" instance=ExtResource("6_vj2oq")]
-position = Vector2(15, 0)
+[node name="BumpAvoidanceZone" parent="PushAvoiderPivot" instance=ExtResource("6_vj2oq")]
+position = Vector2(8, 0)
+collision_mask = 66
 
-[node name="CollisionShape2D" parent="PushAvoiderPivot/PushAvoidanceZone" index="0"]
-shape = SubResource("CapsuleShape2D_pwr72")
+[node name="CollisionShape2D" parent="PushAvoiderPivot/BumpAvoidanceZone" index="0"]
+shape = SubResource("RectangleShape2D_ttejn")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="bumped_with_something" from="PushAvoiderPivot/PushAvoidanceZone" to="." method="_on_push_avoidance_zone_bumped_with_something"]
+[connection signal="bumped_with_something" from="PushAvoiderPivot/BumpAvoidanceZone" to="." method="_on_bump_avoidance_zone_bumped_with_something"]
 
-[editable path="PushAvoiderPivot/PushAvoidanceZone"]
+[editable path="PushAvoiderPivot/BumpAvoidanceZone"]

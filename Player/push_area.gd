@@ -14,15 +14,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(b: Node2D) -> void:
-	print(b)
-	if b:# is StatuePushable:
-		var normalized: Vector2 = player.velocity.normalized()
-		#if abs(normalized.x + normalized.y) == 1.0:
-		b.push_direction = normalized
-		print(normalized)
-		b.pusher = player		
+	var normalized: Vector2 = player.velocity.normalized()
+	#if abs(normalized.x + normalized.y) == 1.0:
+	b.push_direction = normalized
+	b.pusher = player		
 
 func _on_body_exited(b: Node2D) -> void:
-	if b:# is StatuePushable:
-		b.push_direction = Vector2.ZERO
-		b.pusher = null
+	b.push_direction = Vector2.ZERO
+	b.pusher = null
