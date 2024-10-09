@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="KarinRPG"
-run/main_scene="res://Levels/test_dungeon-1.tscn"
+run/main_scene="res://Levels/01-initial/test_dungeon-1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+LevelManager="*res://00_Global/global_level_manager.gd"
+PlayerManager="*res://00_Global/global_player_manager.gd"
 PlayerStats="*res://Player/player_stats.tscn"
 DialogSystem="*res://GUI/dialog_system/dialog_system.tscn"
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://wk11rgl4j02d"]
+
+[ext_resource type="Script" path="res://Levels/scripts/player_spawn_point.gd" id="1_8ceny"]
+[ext_resource type="Texture2D" uid="uid://do6lqtvyq22k8" path="res://GUI/dialog_system/portraits/karin.png" id="1_rfo7d"]
+
+[node name="PlayerSpawnPoint" type="Node2D"]
+script = ExtResource("1_8ceny")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_rfo7d")

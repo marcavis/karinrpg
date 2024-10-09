@@ -1,27 +1,30 @@
-[gd_scene load_steps=17 format=4 uid="uid://nuhfw8abne35"]
+[gd_scene load_steps=19 format=4 uid="uid://nuhfw8abne35"]
 
-[ext_resource type="PackedScene" uid="uid://bryuqinj277db" path="res://camera_2d.tscn" id="3_8huie"]
-[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_interaction.gd" id="4_f3rbr"]
-[ext_resource type="PackedScene" uid="uid://bqdivu2kwx1hs" path="res://Player/player.tscn" id="4_kg2h7"]
-[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_text.gd" id="5_rdim1"]
-[ext_resource type="PackedScene" uid="uid://b1vymdxkqw1cm" path="res://World/bush.tscn" id="6_dr20v"]
-[ext_resource type="Resource" uid="uid://cs05lk1cf4qif" path="res://NPC/00_npcs/fake_karin.tres" id="6_rbe63"]
-[ext_resource type="Resource" uid="uid://bqrkx1s8mkmwg" path="res://NPC/00_npcs/hero_karin.tres" id="6_td1r5"]
-[ext_resource type="PackedScene" uid="uid://cicu8rtgg0hwp" path="res://Props/dungeon/pressure_plate.tscn" id="7_3pf7k"]
-[ext_resource type="PackedScene" uid="uid://cp5py4xfn4104" path="res://World/tree.tscn" id="7_nb7im"]
-[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_choice.gd" id="8_bv8rn"]
-[ext_resource type="PackedScene" uid="uid://bi2ype8bduu5s" path="res://Props/dungeon/barred_door.tscn" id="9_6le1b"]
-[ext_resource type="PackedScene" uid="uid://6qm8fhdp5o2h" path="res://Tilemaps/mg_dungeon_map_layer.tscn" id="9_14fxv"]
-[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_branch.gd" id="9_ly5yl"]
-[ext_resource type="PackedScene" uid="uid://u86s4c3wmbsb" path="res://UI/health_ui.tscn" id="9_m0j1i"]
-[ext_resource type="PackedScene" uid="uid://eynoyt6erqp0" path="res://Props/dungeon/statue_pushable.tscn" id="10_mqt54"]
-[ext_resource type="PackedScene" uid="uid://cxst7ik8wagba" path="res://NPC/npc.tscn" id="10_q18l4"]
+[ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_gev1i"]
+[ext_resource type="PackedScene" uid="uid://bryuqinj277db" path="res://camera_2d.tscn" id="1_w648e"]
+[ext_resource type="PackedScene" uid="uid://cxst7ik8wagba" path="res://NPC/npc.tscn" id="3_r2yj4"]
+[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_interaction.gd" id="4_i0tif"]
+[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_text.gd" id="5_tpq6n"]
+[ext_resource type="Resource" uid="uid://cs05lk1cf4qif" path="res://NPC/00_npcs/fake_karin.tres" id="6_ev0rc"]
+[ext_resource type="Resource" uid="uid://bqrkx1s8mkmwg" path="res://NPC/00_npcs/hero_karin.tres" id="7_fgk5s"]
+[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_choice.gd" id="8_u3qi5"]
+[ext_resource type="Script" path="res://NPC/dialog/scripts/dialog_branch.gd" id="9_s4yos"]
+[ext_resource type="PackedScene" uid="uid://b1vymdxkqw1cm" path="res://World/bush.tscn" id="10_d3o8w"]
+[ext_resource type="PackedScene" uid="uid://cp5py4xfn4104" path="res://World/tree.tscn" id="11_7il7g"]
+[ext_resource type="PackedScene" uid="uid://u86s4c3wmbsb" path="res://UI/health_ui.tscn" id="12_y3h36"]
+[ext_resource type="PackedScene" uid="uid://6qm8fhdp5o2h" path="res://Tilemaps/mg_dungeon_map_layer.tscn" id="13_5rov5"]
+[ext_resource type="PackedScene" uid="uid://cicu8rtgg0hwp" path="res://Props/dungeon/pressure_plate.tscn" id="14_ldq65"]
+[ext_resource type="PackedScene" uid="uid://bi2ype8bduu5s" path="res://Props/dungeon/barred_door.tscn" id="15_0t3al"]
+[ext_resource type="PackedScene" uid="uid://eynoyt6erqp0" path="res://Props/dungeon/statue_pushable.tscn" id="16_5saac"]
+[ext_resource type="PackedScene" uid="uid://wk11rgl4j02d" path="res://Levels/PlayerSpawnPoint.tscn" id="17_cuj4n"]
+[ext_resource type="PackedScene" uid="uid://doinh4r4dqqok" path="res://Levels/level_transition.tscn" id="18_ltwgu"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_gev1i")
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" parent="." instance=ExtResource("3_8huie")]
+[node name="Camera2D" parent="." instance=ExtResource("1_w648e")]
 position = Vector2(159, 92)
 
 [node name="BottomRight" parent="Camera2D/Limits" index="0"]
@@ -30,122 +33,124 @@ position = Vector2(400, 225)
 [node name="TopLeft" parent="Camera2D/Limits" index="1"]
 position = Vector2(-80, -45)
 
-[node name="Player" parent="." instance=ExtResource("4_kg2h7")]
-position = Vector2(159, 92)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
-[node name="NPC" parent="." instance=ExtResource("10_q18l4")]
+[node name="NPC" parent="." instance=ExtResource("3_r2yj4")]
 position = Vector2(110, 58)
 
 [node name="DialogInteraction" type="Node2D" parent="NPC"]
-script = ExtResource("4_f3rbr")
+script = ExtResource("4_i0tif")
 
 [node name="DialogText" type="Node" parent="NPC/DialogInteraction"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "I SWEAR!!!! I AM TRUE KARIN... BEGAT FROM KAZUE AND LEA."
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogText2" type="Node" parent="NPC/DialogInteraction"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "Hi fakey"
-npc_info = ExtResource("6_td1r5")
+npc_info = ExtResource("7_fgk5s")
 
 [node name="DialogText3" type="Node" parent="NPC/DialogInteraction"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "You really don't believe me?"
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogChoice" type="Node" parent="NPC/DialogInteraction"]
-script = ExtResource("8_bv8rn")
+script = ExtResource("8_u3qi5")
 
 [node name="DialogBranchYes" type="Node" parent="NPC/DialogInteraction/DialogChoice"]
-script = ExtResource("9_ly5yl")
+script = ExtResource("9_s4yos")
 text = "Fine, I believe you."
 
 [node name="DialogText4" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "I must confess, I'm still getting used to being Karin."
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogText5" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "Oh! Can you give me some Karin lessons?"
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogChoice" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes"]
-script = ExtResource("8_bv8rn")
+script = ExtResource("8_u3qi5")
 
 [node name="LessonsYes" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes/DialogChoice"]
-script = ExtResource("9_ly5yl")
+script = ExtResource("9_s4yos")
 text = "I'll teach you to be the best me!"
 
 [node name="DialogText5" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes/DialogChoice/LessonsYes"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "Oh, thank you, thank you!"
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogText6" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes/DialogChoice/LessonsYes"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "You're welcome. No, wait - [b]I'm welcome![/b]"
-npc_info = ExtResource("6_td1r5")
+npc_info = ExtResource("7_fgk5s")
 
 [node name="LessonsNo" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes/DialogChoice"]
-script = ExtResource("9_ly5yl")
+script = ExtResource("9_s4yos")
 text = "Nah, I learned on my own."
 
 [node name="DialogText5" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchYes/DialogChoice/LessonsNo"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "This isn't fair..."
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="DialogBranchNo" type="Node" parent="NPC/DialogInteraction/DialogChoice"]
-script = ExtResource("9_ly5yl")
+script = ExtResource("9_s4yos")
 text = "I'm the only me that is."
 
 [node name="DialogText5" type="Node" parent="NPC/DialogInteraction/DialogChoice/DialogBranchNo"]
-script = ExtResource("5_rdim1")
+script = ExtResource("5_tpq6n")
 text = "WELL, YOU'RE NOT REAL EITHER!"
-npc_info = ExtResource("6_rbe63")
+npc_info = ExtResource("6_ev0rc")
 
 [node name="Bushes" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Bush" parent="Bushes" instance=ExtResource("6_dr20v")]
+[node name="Bush" parent="Bushes" instance=ExtResource("10_d3o8w")]
 position = Vector2(65, 67)
 
-[node name="Bush2" parent="Bushes" instance=ExtResource("6_dr20v")]
+[node name="Bush2" parent="Bushes" instance=ExtResource("10_d3o8w")]
 position = Vector2(480, 155)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Tree" parent="Trees" instance=ExtResource("7_nb7im")]
+[node name="Tree" parent="Trees" instance=ExtResource("11_7il7g")]
 position = Vector2(563, 189)
 
-[node name="Tree2" parent="Trees" instance=ExtResource("7_nb7im")]
+[node name="Tree2" parent="Trees" instance=ExtResource("11_7il7g")]
 position = Vector2(547, 123)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("9_m0j1i")]
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("12_y3h36")]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 63.0
 offset_bottom = 16.0
 
-[node name="MgDungeon" parent="." instance=ExtResource("9_14fxv")]
+[node name="MgDungeon" parent="." instance=ExtResource("13_5rov5")]
 tile_map_data = PackedByteArray("AAADAP7/AAAEAAUAAAADAP//AAAEAAYAAAADAAAAAAAEAAcAAAAEAP7/AAAFAAUAAAAEAP//AAAFAAYAAAAEAAAAAAAFAAcAAAAFAP7/AAAGAAUAAAAFAP//AAAGAAYAAAAFAAAAAAAGAAcAAAAGAP7/AAAHAAUAAAAGAP//AAAHAAYAAAAGAAAAAAAHAAcAAAAHAP7/AAAMAAAAAAAHAP//AAAMAAEAAAAHAAAAAAAMAAIAAAADAAUAAAAAAAUAAAADAAYAAAAAAAYAAAADAAcAAAAAAAcAAAAEAAUAAAABAAUAAAAEAAYAAAABAAYAAAAEAAcAAAABAAcAAAAFAAUAAAACAAUAAAAFAAYAAAACAAYAAAAFAAcAAAACAAcAAAAGAAUAAAADAAUAAAAGAAYAAAADAAYAAAAGAAcAAAADAAcAAAAHAAUAAAAAAAUAAAAHAAYAAAAAAAYAAAAHAAcAAAAAAAcAAAAIAAUAAAADAAUAAAAIAAYAAAADAAYAAAAIAAcAAAADAAcAAAAJAAUAAAANAAQAAAAJAAYAAAANAAUAAAAJAAcAAAANAAYAAAAKAAUAAAAOAAQAAAAKAAYAAAAOAAUAAAAKAAcAAAAOAAYAAAALAAUAAAAPAAQAAAALAAYAAAAPAAUAAAALAAcAAAAPAAYAAAAJAAQAAAANAAMAAAAKAAQAAAAOAAMAAAALAAQAAAAPAAMAAAAJAAMAAAANAAMAAAAKAAMAAAAOAAMAAAALAAMAAAAPAAMAAAAJAAIAAAANAAMAAAAKAAIAAAAOAAMAAAALAAIAAAAPAAMAAAAJAAEAAAANAAMAAAAKAAEAAAAOAAMAAAALAAEAAAAPAAMAAAAIAP7/AAAMAAAAAAAIAP//AAAMAAEAAAAIAAAAAAAMAAIAAAAJAP7/AAANAAAAAAAJAP//AAANAAEAAAAJAAAAAAANAAIAAAAKAP7/AAAOAAAAAAAKAP//AAAOAAEAAAAKAAAAAAAOAAIAAAALAP7/AAAPAAAAAAALAP//AAAPAAEAAAALAAAAAAAPAAIAAAD+//7/AAAJAAAAAAD+////AAAJAAEAAAD+/wAAAAAJAAIAAAD///7/AAAKAAAAAAD/////AAAKAAEAAAD//wAAAAAKAAIAAAAAAP7/AAALAAAAAAAAAP//AAALAAEAAAAAAAAAAAALAAIAAAABAP7/AAAMAAAAAAABAP//AAAMAAEAAAABAAAAAAAMAAIAAAACAP7/AAAMAAAAAAACAP//AAAMAAEAAAACAAAAAAAMAAIAAAD+/wEAAAAJAAMAAAD//wEAAAAKAAMAAAAAAAEAAAALAAMAAAABAAEAAAAMAAMAAAD+/wIAAAAJAAMAAAD//wIAAAAKAAMAAAAAAAIAAAALAAMAAAABAAIAAAAMAAMAAAD+/wMAAAAJAAMAAAD//wMAAAAKAAMAAAAAAAMAAAALAAMAAAABAAMAAAAMAAMAAAD+/wQAAAAJAAMAAAD//wQAAAAKAAMAAAAAAAQAAAALAAMAAAABAAQAAAAMAAMAAAD+/wUAAAAJAAQAAAD+/wYAAAAJAAUAAAD+/wcAAAAJAAYAAAD//wUAAAAKAAQAAAD//wYAAAAKAAUAAAD//wcAAAAKAAYAAAAAAAUAAAALAAQAAAAAAAYAAAALAAUAAAAAAAcAAAALAAYAAAABAAUAAAAMAAQAAAABAAYAAAAMAAUAAAABAAcAAAAMAAYAAAACAAUAAAAMAAQAAAACAAYAAAAMAAUAAAACAAcAAAAMAAYAAAACAAQAAAACAAIAAAACAAMAAAAMAAMAAAADAAMAAAACAAIAAAADAAQAAAAMAAMAAAAEAAQAAAAMAAMAAAAEAAMAAAAMAAMAAAAFAAMAAAAMAAMAAAAFAAQAAAAMAAMAAAAGAAQAAAAMAAMAAAAGAAMAAAAMAAMAAAAHAAMAAAAMAAMAAAAHAAQAAAAMAAMAAAAIAAMAAAAMAAMAAAAIAAIAAAAMAAMAAAAIAAQAAAAMAAMAAAAIAAEAAAAMAAMAAAAHAAEAAAAMAAMAAAAHAAIAAAAMAAMAAAAGAAEAAAAMAAMAAAAFAAIAAAAMAAMAAAAGAAIAAAAMAAMAAAAFAAEAAAAMAAMAAAAEAAEAAAAMAAMAAAADAAEAAAAMAAMAAAADAAIAAAAMAAMAAAAEAAIAAAAMAAMAAAACAAEAAAAMAAMAAAACAAIAAAAMAAMAAAA=")
 
-[node name="PressurePlate" parent="." instance=ExtResource("7_3pf7k")]
+[node name="PressurePlate" parent="." instance=ExtResource("14_ldq65")]
 position = Vector2(112, 80)
 
-[node name="BarredDoor" parent="." instance=ExtResource("9_6le1b")]
+[node name="BarredDoor" parent="." instance=ExtResource("15_0t3al")]
 position = Vector2(128, 24)
 
-[node name="StatuePushable" parent="." instance=ExtResource("10_mqt54")]
+[node name="StatuePushable" parent="." instance=ExtResource("16_5saac")]
 position = Vector2(159, 56)
+
+[node name="PlayerSpawnPoint" parent="." instance=ExtResource("17_cuj4n")]
+position = Vector2(160, 120)
+
+[node name="LevelTransition" parent="." instance=ExtResource("18_ltwgu")]
+position = Vector2(160, 200)
+level = "res://Levels/01-initial/test_dungeon-2.tscn"
+target_transition_area = ""
 
 [connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
 [connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]

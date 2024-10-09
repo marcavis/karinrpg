@@ -98,9 +98,6 @@ func _on_timer_timeout() -> void:
 	timer.wait_time = choose([0.5, 1.0, 1.5])
 	state = choose([IDLE, NEW_DIRECTION])
 
-#prevent from i
-func _reset_timer_for_interaction() -> void:
-	timer.wait_time = 1.5
 
 func _set_npc_resource(_npc: NPCResource) -> void:
 	npc_resource = _npc
@@ -115,7 +112,8 @@ func _on_bump_avoidance_zone_bumped_with_something() -> void:
 
 func start_interaction(_player: Player) -> void:
 	state = IDLE
-	_reset_timer_for_interaction()
+	#prevent the NPC from looking away before the dialog UI shows up
+	timer.wait_time = 1.5
 	movement_vector = -_player.direction
 	await get_tree().create_timer(0.1).timeout
 	DialogSystem.show_dialog_ui(dialog_interaction.dialog_items)
