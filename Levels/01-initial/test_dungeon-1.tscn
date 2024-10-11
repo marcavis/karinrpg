@@ -150,7 +150,7 @@ position = Vector2(160, 120)
 [node name="LevelTransition" parent="." instance=ExtResource("18_ltwgu")]
 position = Vector2(160, 200)
 level = "res://Levels/01-initial/test_dungeon-2.tscn"
-target_transition_area = ""
+side = 2
 
 [connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
 [connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]

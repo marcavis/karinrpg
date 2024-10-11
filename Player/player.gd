@@ -68,6 +68,7 @@ func move_state(delta):
 		#animationPlayer.play("RunRight")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
+		print(global_position)
 		animationState.travel("Idle")
 		#animationPlayer.play("IdleRight")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
