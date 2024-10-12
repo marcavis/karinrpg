@@ -18,15 +18,10 @@ func change_tilemap_bounds(bounds: Array[Vector2]):
 func _ready() -> void:
 	await get_tree().process_frame
 	level_loaded.emit()
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func load_new_level(
-	level_path: String,
+	level_scene: String,
 	_target_transition: String,
 	_position_offset: Vector2
 ) -> void:
@@ -37,6 +32,8 @@ func load_new_level(
 	await get_tree().process_frame
 	level_load_started.emit()
 	await get_tree().process_frame
-	get_tree().change_scene_to_file(level_path)
+	get_tree().change_scene_to_file(level_scene)
 	await get_tree().process_frame
 	get_tree().paused = false
+	await get_tree().process_frame
+	level_loaded.emit()

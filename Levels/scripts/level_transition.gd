@@ -3,6 +3,7 @@ class_name LevelTransition extends Area2D
 
 enum SIDE { LEFT, RIGHT, BOTTOM, TOP}
 @export_file("*.tscn") var level 
+#@export var level_path: String
 @export var target_transition_area: String = "LevelTransition"
 
 @export_category("Collision Area Settings")
@@ -21,7 +22,6 @@ enum SIDE { LEFT, RIGHT, BOTTOM, TOP}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(self, self.monitoring)
 	_update_area()
 	if Engine.is_editor_hint():
 		return
@@ -29,18 +29,14 @@ func _ready() -> void:
 	_place_player()
 	
 	await LevelManager.level_loaded
-	
 	monitoring = true
 	body_entered.connect(_player_entered)
 
 func _player_entered(_player: Node2D) -> void:
-	print("Owo")
 	LevelManager.load_new_level(level, target_transition_area, get_offset())
-	pass
+	
 	
 func _place_player() -> void:
-	print("place")
-	print(name, "ehh", LevelManager.target_transition)
 	if name != LevelManager.target_transition:
 		return
 	PlayerManager.set_player_position(global_position + LevelManager.position_offset)
@@ -61,16 +57,19 @@ func _snap_to_grid() -> void:
 	position.y = round(position.y/16) * 16
 
 func get_offset() -> Vector2:
-	var offset: Vector2 = Vector2.ZERO
-	var player_pos: Vector2 = PlayerManager.player.global_position
-	match side:
-		SIDE.LEFT:
-			offset = Vector2(-32, 0)
-		SIDE.RIGHT:
-			offset = Vector2(32, 0)
-		SIDE.BOTTOM:
-			offset = Vector2(0, 32)
-		SIDE.TOP:
-			offset = Vector2(0, -32)
-	return offset 
+	var offset : Vector2 = Vector2.ZERO
+	var player_pos = PlayerManager.player.global_position
+	
+	if side == SIDE.LEFT or side == SIDE.RIGHT:
+		offset.y = player_pos.y - global_position.y
+		offset.x = 32
+		if side == SIDE.LEFT:
+			offset.x *= -1
+	else:
+		offset.x = player_pos.x - global_position.x
+		offset.y = 32
+		if side == SIDE.TOP:
+			offset.y *= -1
+
+	return offset
 	

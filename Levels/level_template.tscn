@@ -1,19 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://b82kf3i0es0e7"]
+[gd_scene load_steps=6 format=4 uid="uid://cj1834p8oxuou"]
 
-[ext_resource type="PackedScene" uid="uid://bryuqinj277db" path="res://camera_2d.tscn" id="1_chk6p"]
-[ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_ed4n7"]
-[ext_resource type="PackedScene" uid="uid://wk11rgl4j02d" path="res://Levels/PlayerSpawnPoint.tscn" id="5_fd8ep"]
-[ext_resource type="PackedScene" uid="uid://doinh4r4dqqok" path="res://Levels/level_transition.tscn" id="7_2ox4p"]
-[ext_resource type="PackedScene" uid="uid://u86s4c3wmbsb" path="res://UI/health_ui.tscn" id="12_ecycd"]
-[ext_resource type="PackedScene" uid="uid://6qm8fhdp5o2h" path="res://Tilemaps/mg_dungeon_map_layer.tscn" id="13_paw34"]
-[ext_resource type="PackedScene" uid="uid://eynoyt6erqp0" path="res://Props/dungeon/statue_pushable.tscn" id="16_3u333"]
+[ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_qj0n3"]
+[ext_resource type="PackedScene" uid="uid://bryuqinj277db" path="res://camera_2d.tscn" id="2_cwdki"]
+[ext_resource type="PackedScene" uid="uid://6qm8fhdp5o2h" path="res://Tilemaps/mg_dungeon_map_layer.tscn" id="13_atto7"]
+[ext_resource type="PackedScene" uid="uid://wk11rgl4j02d" path="res://Levels/PlayerSpawnPoint.tscn" id="17_xdwry"]
+[ext_resource type="PackedScene" uid="uid://doinh4r4dqqok" path="res://Levels/level_transition.tscn" id="18_b57yo"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_ed4n7")
+script = ExtResource("1_qj0n3")
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" parent="." instance=ExtResource("1_chk6p")]
+[node name="Camera2D" parent="." instance=ExtResource("2_cwdki")]
 position = Vector2(159, 92)
 
 [node name="BottomRight" parent="Camera2D/Limits" index="0"]
@@ -22,31 +20,14 @@ position = Vector2(400, 225)
 [node name="TopLeft" parent="Camera2D/Limits" index="1"]
 position = Vector2(-80, -45)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("12_ecycd")]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 63.0
-offset_bottom = 16.0
-
-[node name="MgDungeon" parent="." instance=ExtResource("13_paw34")]
+[node name="MgDungeon" parent="." instance=ExtResource("13_atto7")]
 tile_map_data = PackedByteArray("AAADAP7/AAAEAAUAAAADAP//AAAEAAYAAAADAAAAAAAEAAcAAAAEAP7/AAAFAAUAAAAEAP//AAAFAAYAAAAEAAAAAAAFAAcAAAAFAP7/AAAGAAUAAAAFAP//AAAGAAYAAAAFAAAAAAAGAAcAAAAGAP7/AAAHAAUAAAAGAP//AAAHAAYAAAAGAAAAAAAHAAcAAAAHAP7/AAAMAAAAAAAHAP//AAAMAAEAAAAHAAAAAAAMAAIAAAADAAUAAAAAAAUAAAADAAYAAAAAAAYAAAADAAcAAAAAAAcAAAAEAAUAAAABAAUAAAAEAAYAAAABAAYAAAAEAAcAAAABAAcAAAAFAAUAAAACAAUAAAAFAAYAAAACAAYAAAAFAAcAAAACAAcAAAAGAAUAAAADAAUAAAAGAAYAAAADAAYAAAAGAAcAAAADAAcAAAAHAAUAAAAAAAUAAAAHAAYAAAAAAAYAAAAHAAcAAAAAAAcAAAAIAAUAAAADAAUAAAAIAAYAAAADAAYAAAAIAAcAAAADAAcAAAAJAAUAAAANAAQAAAAJAAYAAAANAAUAAAAJAAcAAAANAAYAAAAKAAUAAAAOAAQAAAAKAAYAAAAOAAUAAAAKAAcAAAAOAAYAAAALAAUAAAAPAAQAAAALAAYAAAAPAAUAAAALAAcAAAAPAAYAAAAJAAQAAAANAAMAAAAKAAQAAAAOAAMAAAALAAQAAAAPAAMAAAAJAAMAAAANAAMAAAAKAAMAAAAOAAMAAAALAAMAAAAPAAMAAAAJAAIAAAANAAMAAAAKAAIAAAAOAAMAAAALAAIAAAAPAAMAAAAJAAEAAAANAAMAAAAKAAEAAAAOAAMAAAALAAEAAAAPAAMAAAAIAP7/AAAMAAAAAAAIAP//AAAMAAEAAAAIAAAAAAAMAAIAAAAJAP7/AAANAAAAAAAJAP//AAANAAEAAAAJAAAAAAANAAIAAAAKAP7/AAAOAAAAAAAKAP//AAAOAAEAAAAKAAAAAAAOAAIAAAALAP7/AAAPAAAAAAALAP//AAAPAAEAAAALAAAAAAAPAAIAAAD+//7/AAAJAAAAAAD+////AAAJAAEAAAD+/wAAAAAJAAIAAAD///7/AAAKAAAAAAD/////AAAKAAEAAAD//wAAAAAKAAIAAAAAAP7/AAALAAAAAAAAAP//AAALAAEAAAAAAAAAAAALAAIAAAABAP7/AAAMAAAAAAABAP//AAAMAAEAAAABAAAAAAAMAAIAAAACAP7/AAAMAAAAAAACAP//AAAMAAEAAAACAAAAAAAMAAIAAAD+/wEAAAAJAAMAAAD//wEAAAAKAAMAAAAAAAEAAAALAAMAAAABAAEAAAAMAAMAAAD+/wIAAAAJAAMAAAD//wIAAAAKAAMAAAAAAAIAAAALAAMAAAABAAIAAAAMAAMAAAD+/wMAAAAJAAMAAAD//wMAAAAKAAMAAAAAAAMAAAALAAMAAAABAAMAAAAMAAMAAAD+/wQAAAAJAAMAAAD//wQAAAAKAAMAAAAAAAQAAAALAAMAAAABAAQAAAAMAAMAAAD+/wUAAAAJAAQAAAD+/wYAAAAJAAUAAAD+/wcAAAAJAAYAAAD//wUAAAAKAAQAAAD//wYAAAAKAAUAAAD//wcAAAAKAAYAAAAAAAUAAAALAAQAAAAAAAYAAAALAAUAAAAAAAcAAAALAAYAAAABAAUAAAAMAAQAAAABAAYAAAAMAAUAAAABAAcAAAAMAAYAAAACAAUAAAAMAAQAAAACAAYAAAAMAAUAAAACAAcAAAAMAAYAAAACAAQAAAACAAIAAAACAAMAAAAMAAMAAAADAAMAAAACAAIAAAADAAQAAAAMAAMAAAAEAAQAAAAMAAMAAAAEAAMAAAAMAAMAAAAFAAMAAAAMAAMAAAAFAAQAAAAMAAMAAAAGAAQAAAAMAAMAAAAGAAMAAAAMAAMAAAAHAAMAAAAMAAMAAAAHAAQAAAAMAAMAAAAIAAMAAAAMAAMAAAAIAAIAAAAMAAMAAAAIAAQAAAAMAAMAAAAIAAEAAAAMAAMAAAAHAAEAAAAMAAMAAAAHAAIAAAAMAAMAAAAGAAEAAAAMAAMAAAAFAAIAAAAMAAMAAAAGAAIAAAAMAAMAAAAFAAEAAAAMAAMAAAAEAAEAAAAMAAMAAAADAAEAAAAMAAMAAAADAAIAAAAMAAMAAAAEAAIAAAAMAAMAAAACAAEAAAAMAAMAAAACAAIAAAAMAAMAAAA=")
 
-[node name="PlayerSpawnPoint" parent="." instance=ExtResource("5_fd8ep")]
-position = Vector2(160, 152)
+[node name="PlayerSpawnPoint" parent="." instance=ExtResource("17_xdwry")]
+position = Vector2(160, 120)
 
-[node name="StatuePushable" parent="." instance=ExtResource("16_3u333")]
-position = Vector2(232, 104)
-
-[node name="LevelTransition" parent="." instance=ExtResource("7_2ox4p")]
-position = Vector2(160, -8)
-level = "res://Levels/01-initial/test_dungeon-1.tscn"
-side = 3
-
-[node name="LevelTransition2" parent="." instance=ExtResource("7_2ox4p")]
+[node name="LevelTransition" parent="." instance=ExtResource("18_b57yo")]
 position = Vector2(160, 200)
-level = "res://Levels/01-initial/test_dungeon-3.tscn"
 side = 2
 
 [editable path="Camera2D"]
