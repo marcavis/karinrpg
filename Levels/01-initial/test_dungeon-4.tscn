@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=4 uid="uid://b206y7qtpgcyx"]
+
+[ext_resource type="Script" path="res://Levels/scripts/level.gd" id="1_0bsuc"]
+[ext_resource type="PackedScene" uid="uid://bryuqinj277db" path="res://camera_2d.tscn" id="2_pl8ic"]
+[ext_resource type="PackedScene" uid="uid://u86s4c3wmbsb" path="res://UI/health_ui.tscn" id="3_l6n54"]
+[ext_resource type="PackedScene" uid="uid://6qm8fhdp5o2h" path="res://Tilemaps/mg_dungeon_map_layer.tscn" id="4_gjgjb"]
+[ext_resource type="PackedScene" uid="uid://wk11rgl4j02d" path="res://Levels/PlayerSpawnPoint.tscn" id="5_3jcy3"]
+[ext_resource type="PackedScene" uid="uid://doinh4r4dqqok" path="res://Levels/level_transition.tscn" id="6_rlpre"]
+[ext_resource type="PackedScene" uid="uid://b1vymdxkqw1cm" path="res://World/bush.tscn" id="7_uxceg"]
+[ext_resource type="PackedScene" uid="uid://ten6f7h0dafk" path="res://Tilemaps/dirt_path_map_layer.tscn" id="8_b1pbm"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_0bsuc")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" parent="." instance=ExtResource("2_pl8ic")]
+position = Vector2(159, 92)
+
+[node name="BottomRight" parent="Camera2D/Limits" index="0"]
+position = Vector2(400, 225)
+
+[node name="TopLeft" parent="Camera2D/Limits" index="1"]
+position = Vector2(-80, -45)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("3_l6n54")]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 63.0
+offset_bottom = 16.0
+
+[node name="MgDungeon" parent="." instance=ExtResource("4_gjgjb")]
+
+[node name="PlayerSpawnPoint" parent="." instance=ExtResource("5_3jcy3")]
+position = Vector2(160, 152)
+
+[node name="LevelTransition" parent="." instance=ExtResource("6_rlpre")]
+position = Vector2(160, -8)
+level = "res://Levels/01-initial/test_dungeon-2.tscn"
+target_transition_area = "LevelTransition2"
+side = 3
+
+[node name="Bush" parent="." instance=ExtResource("7_uxceg")]
+position = Vector2(88, 96)
+
+[node name="DirtPathMapLayer" parent="." instance=ExtResource("8_b1pbm")]
+tile_map_data = PackedByteArray("AAAKAAIAAAAAAAAAAAALAAIAAAABAAAAAAAMAAIAAAACAAAAAAAMAAMAAAACAAIAAAAKAAMAAAAAAAIAAAALAAQAAAADAAEAAAALAAUAAAAEAAMAAAAMAAUAAAAGAAAAAAANAAUAAAAFAAAAAAANAAYAAAAHAAEAAAAMAAYAAAAAAAIAAAAOAAUAAAABAAMAAAAPAAUAAAAHAAAAAAAPAAYAAAADAAEAAAALAAMAAAAIAAEAAAAIAAMAAAACAAMAAAAHAAMAAAAEAAAAAAAHAAQAAAADAAEAAAAHAAUAAAAEAAMAAAAIAAUAAAAHAAAAAAAIAAYAAAADAAEAAAAHAAcAAAAAAAMAAAAIAAcAAAAIAAQAAAAJAAcAAAACAAMAAAAIAAgAAAADAAEAAAAHAAkAAAABAAMAAAAIAAkAAAAHAAMAAAAGAAkAAAABAAMAAAAFAAkAAAAEAAMAAAAFAAgAAAADAAAAAAANAAcAAAAEAAMAAAAOAAcAAAABAAMAAAAPAAcAAAAHAAMAAAA=")
+
+[editable path="Camera2D"]
